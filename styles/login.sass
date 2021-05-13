@@ -1,0 +1,32 @@
+html, body
+  height: 100vh
+
+.container
+  height: 100vh
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+.card
+  width: 25rem
+
+.login-background
+  padding: 2rem 0
+
+.input-field
+  label
+    color: #ddd
+  .prefix
+    .active
+      color: #ddd
+  input
+    &:focus
+      border-bottom: 1px solid #607d8b
+      box-shadow: 0 1px 0 0 #607d8b !important
+      & + label
+        color: #607d8b !important
+    &[type=text]
+      .valid, .invalid
+        border-bottom: 1px solid #ddd
+        box-shadow: 0 1px 0 0 #ddd

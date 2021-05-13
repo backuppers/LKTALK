@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    - filename = 'chat'
+    include includes/metadatas.pug
+    include includes/styles.pug
+  body
+    div.container
+      div.row
+        div.col.s12.m6.card.blue-grey
+          div.preview
+        div.col.s12.m6.card
+          div.view
+          form#send-field.input-field
+            button#send.btn.blue-grey.right.tooltipped(data-position='top' data-tooltip='send')
+              i.material-icons.medium send
+            input#input(autocomplete='off' placeholder='message...')
+    include includes/scripts.pug

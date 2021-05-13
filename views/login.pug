@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    - filename = 'login'
+    include includes/metadatas.pug
+    include includes/styles.pug
+  body
+    div.container
+      form.card(action='/login' method='POST')
+        div.login-background.center.blue-grey
+          i.material-icons.large.white-text person
+        div.card-content
+          span.card-title.blue-grey-text LOGIN
+          div.input-field
+            input#nickname(autocomplete='off' name='nickname' type='text')
+            label(for='nickname') Nickname
+          div.input-field.tooltipped(data-position='right' data-tooltip='준비 중입니다.')
+            input#password(name='password' type='password' disabled)
+            label(for='password') Password
+          button.btn.blue-grey Login
+    include includes/scripts.pug
+    
