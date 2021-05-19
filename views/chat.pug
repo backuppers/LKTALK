@@ -5,14 +5,48 @@ html
     include includes/metadatas.pug
     include includes/styles.pug
   body
-    div.container
-      div.row
-        div.col.s12.m6.card.blue-grey
-          div.preview
-        div.col.s12.m6.card
-          div.view
-          form#send-field.input-field
-            button#send.btn.blue-grey.right.tooltipped(data-position='top' data-tooltip='send')
-              i.material-icons.medium send
-            input#input(autocomplete='off' placeholder='message...')
+    div.container: div.flexable
+
+        div.header: div.row
+          div.col.s12.m8.l6.offset-m2.offset-l3
+            nav.nav-extended.pink
+              div.nav-wrapper
+                a.brand-logo.center LKTALK
+                a.sidenav-trigger(href='#' data-target='status')
+                  i.material-icons menu
+            ul#status.sidenav
+              li: div.user-view
+                div.background.darken-2.pink
+                a: i.circle.material-icons.white.medium.center.pink-text person
+                a: span.white-text.name John Doe
+                a: span.white-text.email test@l-k.kr
+              li: a.subheader 4명 접속중
+              li: div.divider
+              each val in [1,2,3,4]
+                li: a(href='#' class=val) human #{ val }
+        
+        div#list.content: div.row
+          div#viewer.col.s12.m8.l6.offset-m2.offset-l3
+            each val in [1,2,3,4,5]
+              div.card-panel.hoverable.scale-transition
+                span.profile
+                  i.material-icons.pink-text.small account_circle
+                  span.username human
+                  span.timestamp 12:20
+                div Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            div.card
+              div.center-align 누군가가 접속하였습니다.
+
+        div.footer: div.row
+          div.col.s12.m8.l6.offset-m2.offset-l3
+            form#deliver
+              input(type='text')
+              button.btn.pink send
+
+    div#floater.fixed-action-btn.hide-on-med-and-down
+      a.btn-floating.btn-large.pink
+        i.large.material-icons menu
+      ul: li: a.btn-floating.red(href='#')
+        i.material-icons person
+          
     include includes/scripts.pug

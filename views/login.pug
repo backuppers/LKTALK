@@ -6,17 +6,24 @@ html
     include includes/styles.pug
   body
     div.container
-      form.card(action='/login' method='POST')
-        div.login-background.center.blue-grey
-          i.material-icons.large.white-text person
-        div.card-content
-          span.card-title.blue-grey-text LOGIN
-          div.input-field
-            input#nickname(autocomplete='off' name='nickname' type='text')
-            label(for='nickname') Nickname
-          div.input-field.tooltipped(data-position='right' data-tooltip='준비 중입니다.')
-            input#password(name='password' type='password' disabled)
-            label(for='password') Password
-          button.btn.blue-grey Login
+      div.row
+        div.card.col.s12.m6.offset-m3
+          div.card-image.center-align
+            h3 LKTALK
+            i.material-icons.large.pink-text people
+          div.card-content
+            span.card-title.center Login
+            form(method='post' action='')
+              div.input-field
+                i.material-icons.prefix account_circle
+                input.validate#username(name='username' type='text')
+                label(for='username') Username
+              div.input-field
+                i.material-icons.prefix lock
+                input.validate#password(name='password' type='password')
+                label(for='password') Password
+              div.buttons.right-align
+                button.btn.pink login
+          
     include includes/scripts.pug
     

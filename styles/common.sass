@@ -1,0 +1,20 @@
+$color: #e91e63
+.input-field 
+  input
+    &:focus + label
+      color: $color !important
+    &:focus
+      border-bottom: 1px solid $color !important
+      box-shadow: 0 1px 0 0 $color !important
+    .valid
+      // green!
+      // border-bottom: 1px solid $color
+      // box-shadow: 0 1px 0 0 $color
+    .invalid
+      // red!
+  .prefix.active
+    color: $color
+
+input:focus
+  border-bottom: 1px solid $color !important
+  box-shadow: 0 1px 0 0 $color !important
