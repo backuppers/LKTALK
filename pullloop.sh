@@ -1,6 +1,7 @@
 
 while true;
 do
+  git remote update
   local=$(git rev-parse HEAD)
   target=$(git rev-parse origin)
   if [ $local != $target ]; then
