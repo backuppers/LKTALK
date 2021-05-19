@@ -4,6 +4,11 @@ import chatRouter from './chat';
 
 const router: Router = Router();
 
+router.use((req: Request, res: Response, next: NextFunction) => {
+  if(!req.secure) { res.redirect('https://mj2sdev.ml') }
+  else { next(); }
+});
+
 router.use('/login', loginRouter);
 router.use('/chat', chatRouter);
 

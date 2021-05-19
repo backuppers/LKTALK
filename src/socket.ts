@@ -1,9 +1,10 @@
 import { Server, Socket } from 'socket.io';
-import { createServer } from 'http';
+import https from 'https';
 import app, { session } from './app';
 import sharedsession from 'express-socket.io-session';
+import config from './config';
 
-const server = createServer(app);
+const server = https.createServer(config.https ,app);
 const io = new Server(server);
 
 io.use(sharedsession(session));
