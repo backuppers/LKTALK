@@ -18,9 +18,9 @@ html
                 i.material-icons.prefix account_circle
                 input.validate#username(name='username' type='text')
                 label(for='username') Username
-              div.input-field
+              div.input-field.tooltipped(data-position='bottom' data-tooltip='준비중입니다.')
                 i.material-icons.prefix lock
-                input.validate#password(name='password' type='password')
+                input.validate#password(name='password' type='password' disabled)
                 label(for='password') Password
               div.buttons.right-align
                 button.btn.pink login

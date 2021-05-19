@@ -5,3 +5,9 @@ declare module 'express-session' {
     username: string;
   }
 }
+declare module 'socket.io/dist/socket' {
+  interface Handshake {
+    session?: session.Session & Partial<session.SessionData>;
+    sessionID?: string;
+  }
+}

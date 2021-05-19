@@ -18,35 +18,43 @@ html
               li: div.user-view
                 div.background.darken-2.pink
                 a: i.circle.material-icons.white.medium.center.pink-text person
-                a: span.white-text.name John Doe
-                a: span.white-text.email test@l-k.kr
-              li: a.subheader 4명 접속중
+                a: span#username_side.white-text.name= username
+                a: span#useremail_side.white-text.email test@l-k.kr
+              li: a.subheader
+                span#members_count
+                span 명 접속중
               li: div.divider
-              each val in [1,2,3,4]
-                li: a(href='#' class=val) human #{ val }
+              ul#side_members
+                each val in [1,2,3,4]
+                  li: a(href='#' class=val) human #{ val }
         
         div#list.content: div.row
           div#viewer.col.s12.m8.l6.offset-m2.offset-l3
-            each val in [1,2,3,4,5]
-              div.card-panel.hoverable.scale-transition
-                span.profile
-                  i.material-icons.pink-text.small account_circle
-                  span.username human
-                  span.timestamp 12:20
-                div Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            div.card
-              div.center-align 누군가가 접속하였습니다.
 
+            //- 메세지 카드 템플릿
+            //- each val in [1,2,3,4,5]
+            //-   div.card-panel.scale-transition
+            //-     div.timestamp.pink.white-text 12:4
+            //-     span.profile
+            //-       i.material-icons.pink-text.small account_circle
+            //-       span.username human
+            //-       //- span.timestamp 12:20
+            //-     div Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+            //- 시스템 알림 템플릿
+            //- div.card
+            //-   div.center-align 누군가가 접속하였습니다.
+            
         div.footer: div.row
           div.col.s12.m8.l6.offset-m2.offset-l3
             form#deliver
-              input(type='text')
+              input#message(type='text' autocomplete='off')
               button.btn.pink send
 
     div#floater.fixed-action-btn.hide-on-med-and-down
-      a.btn-floating.btn-large.pink
+      a.btn-floating.btn-large.pink.tooltipped(data-position='left' data-tooltip='접속자')
         i.large.material-icons menu
-      ul: li: a.btn-floating.red(href='#')
+      ul#float_members: li: a.btn-floating.red(href='#')
         i.material-icons person
           
     include includes/scripts.pug

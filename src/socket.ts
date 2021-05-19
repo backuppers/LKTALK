@@ -1,19 +1,40 @@
 import { Server, Socket } from 'socket.io';
 import { createServer } from 'http';
-import app from './app';
+import app, { session } from './app';
+import sharedsession from 'express-socket.io-session';
 
 const server = createServer(app);
 const io = new Server(server);
 
+io.use(sharedsession(session));
+
+const map = new Map();
 io.on('connection', (socket: Socket) => {
-  io.emit('message', { name: 'admin', message: '누군가 접속했습니다.'})
+  
+  map.set(socket.id, socket.handshake.session?.username);
+  console.log(socket.id + 'connect');
+  io.emit('someone has connected', {
+    name: 'system', 
+    message: `${socket.handshake.session?.username}님이 접속하셨습니다.`,
+    members: Array.from(map.values()),
+  });
 
   socket.on('disconnect', () => {
-    io.emit('message', { name: 'admin', message: '누군가 나갔습니다.'})
-  })
+    map.delete(socket.id);
+    io.emit('someone has disconnected', { 
+      name: 'system', 
+      message: `${socket.handshake.session?.username}님이 떠났습니다.`,
+      members: Array.from(map.values())
+    });
+    console.log(socket.id + 'disconnect');
+  });
 
-  socket.on('message', data => {
-    io.emit('message', data);
+  socket.on('message', message => {
+    const info = {
+      username: socket.handshake.session?.username,
+      message: message,
+    };
+    io.emit('message', info);
   })
 })
 
