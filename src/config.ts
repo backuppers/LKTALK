@@ -18,9 +18,9 @@ class config {
     indentedSyntax: true,
   }
   public readonly https: SecureContextOptions = {
-    key: fs.readFileSync('../ssl/private.key'),
-    cert: fs.readFileSync('../ssl/certificate.crt'),
-    ca: fs.readFileSync('../ssl/ca_bundle.crt'),
+    key: fs.readFileSync(join(__dirname, '../ssl/private.key')),
+    cert: fs.readFileSync(join(__dirname, '../ssl/certificate.crt')),
+    ca: fs.readFileSync(join(__dirname, '../ssl/ca_bundle.crt')),
   }
 }
 
