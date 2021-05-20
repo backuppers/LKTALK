@@ -69,7 +69,7 @@ const printMessage = (content) => {
 }
 
 const notificateMessage = info => {
-  if (Notification.permission == "granted") {
+  if (Notification.permission == "granted" && !document.hasFocus()) {
     let notification = new Notification(info.username, { body: info.message });
     setTimeout(notification.close.bind(notification), 3000);
   }
