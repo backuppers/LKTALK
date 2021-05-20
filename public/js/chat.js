@@ -1,4 +1,5 @@
 const socket = io();
+Notification.requestPermission();
 
 const delivery = (event) => {
   event.preventDefault();
@@ -67,6 +68,13 @@ const printMessage = (content) => {
   }, 100);
 }
 
+const notificateMessage = info => {
+  if (Notification.permission == "granted") {
+    let notification = new Notification(info.username, { body: info.message });
+    setTimeout(notification.close.bind(notification), 3000);
+  }
+}
+
 const refreshMembers = members => {
   $(float_members).html('');
   $(side_members).html('');
@@ -93,17 +101,20 @@ socket.on('someone has connected', info => {
   const content = noticeTemplate(info);
   printMessage(content);
   refreshMembers(info.members);
+  notificateMessage(info);
 })
 
 socket.on('someone has disconnected', info => {
   const content = noticeTemplate(info);
   printMessage(content);
   refreshMembers(info.members);
+  notificateMessage(info);
 })
 
 socket.on('message', info => {
   const content = cardTemplate(info);
   printMessage(content);
+  notificateMessage(info);
 });
 
 socket.on('disconnect', reason => {
